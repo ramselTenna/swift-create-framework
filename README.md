@@ -1,3 +1,20 @@
+# goTenna Usage
+
+This tool is the only way we've found that will create an xcframework from the `radio-sdk-ios` package properly. The reason this has been so difficult is because of the C files/module in `GoTennaSDK_AG_C`. 
+
+## We have tried:
+- Manually running `xcodebuild archive` and `xcodebuild -create-xcframework` on this package and while that will build the xcframework correctly, the swift-interface files aren't copied into the xcframework, and thus projects that import it can't see the interface.
+- Running the fastlane wrapper of this command `bundle exec fastlane xcframework` - same issues.
+- We even tried running the manual `xcodebuild` commands on the project that this tool creates. However, that doesn't work either. Somewhere in this tool exists the magic to get the headers or module map correct so that the xcframework is built properly with the swift-interface files.
+
+## Why is this fork needed?
+The `swift-create-framework` tool broke for xcode 15. There was a PR submitted [https://github.com/unsignedapps/swift-create-xcframework/pull/93], however, it hasn't been merged yet. So this fork is our own version with this PR merged and one other bug fixed, so that this can be run on xcode 15.
+
+
+
+---
+[Original repo readme below]
+
 # swift-create-xcframework
 
 swift-create-xcframework is a very simple tool designed to wrap `xcodebuild` and the process of creating multiple frameworks for a Swift Package and merging them into a single XCFramework.
