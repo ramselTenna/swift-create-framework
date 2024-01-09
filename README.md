@@ -10,6 +10,23 @@ This tool is the only way we've found that will create an xcframework from the `
 ## Why is this fork needed?
 The `swift-create-framework` tool broke for xcode 15. There was a PR submitted [https://github.com/unsignedapps/swift-create-xcframework/pull/93], however, it hasn't been merged yet. So this fork is our own version with this PR merged and one other bug fixed, so that this can be run on xcode 15.
 
+## How to use + Next steps for automatic deployment of binary builds upon release
+- Follow instructions below to install the `swift-create-xcframework` tool
+- On any release of `grip-ios`, `crypto-ios`, or `radio-sdk-ios`, run `swift create xcframework` in the respective repo root
+- This will create an `.xcframework` folder in the repo root
+- NOTE: For `radio-sdk-ios` there will be two xcframeworks: `GoTennaSDK_AG.xcframework` and `GoTennaSDK_AG_C.xcframework`
+<img width="456" alt="image" src="https://github.com/ramselTenna/swift-create-framework/assets/111140981/d5f11c3d-6b81-4a14-8d67-dd0201c24644">
+
+- Copy these 4 xcframeworks: `GoTennaSDK_AG.xcframework` and `GoTennaSDK_AG_C.xcframework`, `GoTennaCryptoModule.xcframework`, and `GRiP.xcframework` into the `core-sdk-ios` repo under: `Sources/Frameworks`. 
+- Release a new dot release of `core-sdk-ios`
+
+
+
+
+
+
+
+
 
 
 ---
